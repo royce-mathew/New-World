@@ -8,8 +8,6 @@ public class player {
     private int level;
     private int exp;
 
-    check checker;
-
     /* Constructor */ 
     public player(String _name){
         name = _name;
@@ -24,17 +22,17 @@ public class player {
     /* Setter Functions */ 
     public void setCoins(int _coins){
         // Set coins if the value is acceptable
-        coins = checker.checkNegative(_coins);
+        coins = check.checkNegative(_coins);
     }
 
     public void updateCoins(int _coins){
         // Update coins if the value is acceptable
-        coins += checker.checkNegative(_coins);
+        coins += check.checkNegative(_coins);
     }
 
     public void updateExp(int _exp){
         // Update exp if the value is acceptable
-        exp += checker.checkNegative(_exp);
+        exp += check.checkNegative(_exp);
     }
 
 

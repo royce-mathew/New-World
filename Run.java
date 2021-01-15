@@ -1,7 +1,9 @@
 // Import Scanner for input
 import java.util.Scanner;
 
-import modules.check;
+import modules.*;
+
+import story.*;
 
 class Run {
     public static void main(String args[]){
@@ -16,10 +18,8 @@ class Run {
 
 
         print("To play this game you must verify your age.");
-        sc.nextLine();
-
-        clearScreen();
-        enterPrompt();
+        
+        nextClearEnter(sc);
 
         // Check Age
         print("Please enter your age");
@@ -34,12 +34,14 @@ class Run {
             System.exit(0);
         }
 
-        sc.nextLine();
-        clearScreen();
-        enterPrompt();
+        nextClearEnter(sc);
 
         // Run the getName function 
         String name = getName(sc);
+        player plr = new player(name);
+
+        page1 p1 = new page1(plr);
+
     }
 
     public static String getName(Scanner sc){
@@ -55,6 +57,13 @@ class Run {
         }
 
         return name;
+    }
+
+    public static void nextClearEnter(Scanner sc){
+        sc.nextLine();
+        clearScreen();
+        enterPrompt();
+        wait(1);
     }
 
     public static void enterPrompt(){
