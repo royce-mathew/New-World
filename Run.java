@@ -1,9 +1,9 @@
 // Import Scanner for input
 import java.util.Scanner;
 
-import modules.*;
-
-import story.*;
+import modules.check;
+import modules.player;
+import story.page1;
 
 class Run {
     public static void main(String args[]){
@@ -42,6 +42,8 @@ class Run {
 
         page1 p1 = new page1(plr);
 
+        askOption(sc, p1, 1);
+
     }
 
     public static String getName(Scanner sc){
@@ -59,11 +61,40 @@ class Run {
         return name;
     }
 
+    public static void askOption(Scanner sc, page1 page, int question){
+        // Decrease by 1 becauase indexes start at 0
+        question--;
+
+        String[] storyLine = page.getStory();
+        String story = storyLine[question];
+        
+        String[][] optionData = page.getOptionData();
+        String[] mainData = optionData[question];
+
+        print(story);
+        print("Options:");
+
+        for (int i = 0; i < mainData.length; i++){
+            print("["+i+"]: " + mainData[i]);
+        }
+        
+        print("\n");
+        print("Choose Option: ");
+        int option = sc.nextInt();
+        page.chooseOption(option);
+    }
+
     public static void nextClearEnter(Scanner sc){
         sc.nextLine();
+        try {
+            wait(1);
+        } catch (Exception InterruptedException){
+            print("Error occured while waiting.");
+        };
+
         clearScreen();
         enterPrompt();
-        wait(1);
+       
     }
 
     public static void enterPrompt(){

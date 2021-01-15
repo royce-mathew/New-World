@@ -1,9 +1,8 @@
 package story;
 
-import modules.*;
+import modules.player;
 
 public class page1 {
-
     private String[] storyLine = {
         "You wake up. You look around you.\n This is a jungle.\n\n There are two routes here, which one do I take?",
         
@@ -27,7 +26,7 @@ public class page1 {
 
     
 
-    public void part1(int optionChose){
+    public void chooseOption(int optionChose){
         if (optionChose == 1){
             System.out.println("One");
 
