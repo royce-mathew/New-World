@@ -1,6 +1,14 @@
 package modules;
 
+import java.util.Scanner;
+
 public class check {
+
+     // Adding private constructor to hide the implicit public one (This was done because of sonarlint warning)
+     private check() {
+        throw new IllegalStateException("Utility Class");
+    }
+
     // Check Function
     public static int checkNegative(int value){
         if (value > 0) {
@@ -20,5 +28,21 @@ public class check {
         }
     }
 
+    public static int checkIfNumber(Scanner sc, String value){
+        try {
+            return Integer.parseInt(value);
+
+        } catch (NumberFormatException exception){
+            util.print("Invalid input. Please try again.");
+
+            // Try to wait for 1 seconds
+            util.wait(1.0);
+        
+            util.clearScreen();
+            String givenInput = sc.nextLine();
+            checkIfNumber(sc, givenInput);
+        }
+        return 0;
+    }
     
 }

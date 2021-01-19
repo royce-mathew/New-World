@@ -22,11 +22,7 @@ public class optionHandler {
 
         for (String detailedStrings : story){
             util.print(detailedStrings);
-            try{
-                util.wait(0.5);
-            } catch (Exception InterruptedException){
-                util.print("Error occured while waiting.");
-            };
+            util.wait(0.5);
             
         }
 

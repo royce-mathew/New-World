@@ -58,9 +58,17 @@ public class util {
         System.out.flush();  
     }  
 
-    public static void wait(double sec) throws InterruptedException {
+    public static void wait(double sec) {
         long toWait = Math.round(sec*1000);
-        Thread.sleep(toWait);
+        try {
+            Thread.sleep(toWait);
+
+        } catch (InterruptedException e){
+            print("An error occured while waiting, please report this error to the developers.");
+            // Restore interrupted state (Code from sonarlint docs)...
+            Thread.currentThread().interrupt();
+        }
+       
     }
 
     public static void print(String toPrint){
