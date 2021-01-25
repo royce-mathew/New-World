@@ -38,11 +38,38 @@ public class check {
             // Try to wait for 1 seconds
             util.wait(1.0);
         
-            util.clearScreen();
             String givenInput = sc.nextLine();
             checkIfNumber(sc, givenInput);
         }
-        return 0;
+        return -1;
+    }
+
+    public static int checkIfNumber(Scanner sc, String value, int range){
+        try {
+            int newInt = Integer.parseInt(value);
+            if (newInt <= range && newInt >= 0){
+                return newInt;
+            } else {
+                util.print("Invalid input. Please try again.");
+
+                // Try to wait for 1 seconds
+                util.wait(1.0);
+            
+                String givenInput = sc.nextLine();
+                checkIfNumber(sc, givenInput);
+            }
+            
+
+        } catch (NumberFormatException exception){
+            util.print("Invalid input. Please try again.");
+
+            // Try to wait for 1 seconds
+            util.wait(1.0);
+        
+            String givenInput = sc.nextLine();
+            checkIfNumber(sc, givenInput);
+        }
+        return -1;
     }
     
 }

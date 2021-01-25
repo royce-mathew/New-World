@@ -10,6 +10,7 @@ import modules.story;
 class Run {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
+        
 
         util.clearScreen();
         util.enterPrompt();
@@ -42,9 +43,14 @@ class Run {
         String name = util.getName(sc);
         player plr = new player(name);
 
-        story mainStory = new story(plr);
+        story mainStory = new story(plr, sc);
+        // Optionhandler is private because it stores private variables such as time and other
+        optionHandler oHandler = new optionHandler(sc, plr, mainStory);
 
-        optionHandler.askOption(sc, mainStory, 1);
+        mainStory.setOptionHandler(oHandler);
+        
+        oHandler.tellPart(0);
+        oHandler.askOption(0);
 
     }
     

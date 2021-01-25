@@ -48,9 +48,9 @@ public class util {
     }
 
     public static void enterPrompt(){
-        print("===========================");
-        print("= Press ENTER to continue =");
-        print("===========================\n");
+        print("==============================");
+        print("=  Press ENTER to continue   =");
+        print("==============================\n");
     }
 
     public static void clearScreen() {  
@@ -73,5 +73,13 @@ public class util {
 
     public static void print(String toPrint){
         System.out.println(toPrint);
+    }
+
+    public static void printStory(String toPrint){
+        for (char s : toPrint.toCharArray()){
+            System.out.print(s);
+            wait(0.05);
+        }
+        System.out.println();
     }
 }
