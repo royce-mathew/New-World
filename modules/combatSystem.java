@@ -17,7 +17,7 @@ public class combatSystem {
         // 
     private void startFight(String person, int enemyHp){
         // Check if the enemy is the boss or the thug, we will use this string for determining the static hp, which tells the player how much damage the player has done
-        String staticHp = (person == "thugs") ? "/100" : "/300";
+        String staticHp = (person.compareTo("thugs") == 0) ? "/100" : "/300";
 
         // Check if the player is dead
         if (plr.getHp() < 0) {
