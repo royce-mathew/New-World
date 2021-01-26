@@ -10,18 +10,15 @@ public class check {
     }
 
     /* Private Methods */
-    private static void restateInput(Scanner sc){
+    private static String restateInput(Scanner sc){
         // Tell user that their input was invalid
         util.print("Invalid input. Please try again.");
 
         // Try to wait for 1 seconds
         util.wait(1.0);
     
-        // Get input again
-        String givenInput = sc.nextLine();
-
-        // Check if that input is a number
-        checkIfNumber(sc, givenInput);
+        // Get input again and return it
+       return sc.nextLine();
     }
 
     // Check Function
@@ -52,18 +49,15 @@ public class check {
         // Try statement (Since parseInt can return an exception)
         try {
 
-            // Try to convert the string to an integer 
+            // Try to convert the String to an integer, if converting works, return.
             return Integer.parseInt(value);
 
         // If we catch an exception while converting the string to int
         } catch (NumberFormatException exception){
 
             // Try to get the input again
-            restateInput(sc);
+            return checkIfNumber(sc, restateInput(sc));
         }
-
-        // This line of could should never be reached but just in case, this method will return a -1
-        return -1;
     }
 
     
@@ -86,18 +80,15 @@ public class check {
             } else {
 
                 // Try to get input again
-               restateInput(sc);
+               return checkIfNumber(sc, restateInput(sc), range);
             }
 
         // If the string is not a number 
         } catch (NumberFormatException exception){
 
             // Try to get input again
-           restateInput(sc);
+            return checkIfNumber(sc, restateInput(sc), range);
         }
-
-        // This line of could should never be reached but just in case, this method will return a -1
-        return -1;
     }
     
 }

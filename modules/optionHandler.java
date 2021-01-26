@@ -2,6 +2,9 @@ package modules;
 
 import java.util.Scanner;
 
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.text.DefaultEditorKit;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -36,6 +39,14 @@ public class optionHandler {
                 // Replace that with the system time
                 // The "" concatenation is for changing the currentTimeMillis to a string since String.replace only takes Strings as params
                 detailedStrings = detailedStrings.replace("{systemTime}", formattedDate);
+            }
+            if (detailedStrings.contains("{clearScreen}")){
+
+                // Replace the text with nothing because it will still print in next line 
+                detailedStrings = detailedStrings.replace("{clearScreen}", "");
+
+                // Clear the screen
+                util.clearScreen();
             }
 
             // Print those strings
@@ -82,8 +93,8 @@ public class optionHandler {
         }
         
         // Prompt user to enter an option
-        util.print("\n");
-        util.print("Choose Option: ");
+        util.print("");
+        util.print("Choose Option:");
 
         // Get the user input
         String option = sc.nextLine();

@@ -20,7 +20,7 @@ public class combatSystem {
         String staticHp = (person.compareTo("thugs") == 0) ? "/100" : "/300";
 
         // Check if the player is dead
-        if (plr.getHp() < 0) {
+        if (plr.getHp() <= 0) {
             util.clearScreen();
             util.print("You got defeated by " + person);
             util.print("GAME OVER");
@@ -44,8 +44,8 @@ public class combatSystem {
                 // Subtract 10 hp from player
                 plr.setHp(plr.getHp() - 10);
 
-                // Run this method again (recursive methods)
-                startFight(person, enemyHp);
+                // Run setup fight becuase it acts as a option selection menu
+                setupFight(person, enemyHp);
 
             } else {
 
@@ -53,9 +53,13 @@ public class combatSystem {
                 util.clearScreen();
                 util.print("You defeated " + person + "!");
                 util.wait(0.5);
+
+                // Add two potions to the player
                 util.print("You got 2 health potions!");
                 plr.addPotions();
                 plr.addPotions();
+
+                // Wait 2 seconds and then go to back to story
                 util.wait(2.0);
             }
 
@@ -64,15 +68,26 @@ public class combatSystem {
              plr.setHp(plr.getHp() - 10);
 
              // Run this method again (recursive methods)
-             startFight(person, enemyHp);
+             setupFight(person, enemyHp);
         }
 
 
     }
 
-    private void healUp(){
-        plr.subtractPotions();
-        plr.setHp(100);
+    // Accepts person and enemyHp because it needs to call start fight
+    private void healUp(String person, int enemyHp){
+        if (plr.getPotions() == 0) {
+            // Tell player that they have no potions left, start the fight again
+            util.print("You have no potions!");
+            startFight(person, enemyHp);
+
+        // Health potions fill the player's health up
+        } else {
+            // Subtract one potion from the player
+            plr.subtractPotions();
+            plr.setHp(100);
+        }
+       
     }
 
     public void setupFight(String person, int hp){
@@ -93,7 +108,7 @@ public class combatSystem {
             startFight(person, hp);
 
         } else if (checkedOption == 2) {
-            healUp();
+            healUp(person, hp);
 
         } else {
             util.print("Wrong option. Please choose option 1 or 2");

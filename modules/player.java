@@ -36,7 +36,7 @@ public class player {
         // Set coins if the value is acceptable
         coins = check.checkNegative(_coins);
     }
-
+    
     public void addPotions(){
         healthPotions++;
     }
