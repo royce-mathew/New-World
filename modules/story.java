@@ -88,12 +88,12 @@ public class story {
             "{plrName}: Where.. Am I?",
             "Michael: Stay still for now. I'm here.",
             "Michael: Are you alright?",
-            "Protagonist: Im okay for now. *Coughs*",
+            "{plrName}: Im okay for now. *Coughs*",
             "Michael: You are so lucky I was here.",
-            "Protagonist: How did you know I was injured.",
+            "{plrName}: How did you know I was injured.",
             "Michael: I was walking past your apartment to go to my family’s apartment and then I heard weird noises from your apartment. That's when I rushed in.",
             "{plrName}: I don't really remember, it's like.. I just can't describe it.",
-            "Protagonist: Anyways, I remember waking up at night yesterday. What the hell happened to the lab?",
+            "{plrName}: Anyways, I remember waking up at night yesterday. What the hell happened to the lab?",
             "Michael: The place blew up due to an explosion created by 4 scientists, atleast that's what the police think.",
             "Michael: They say that the scientists were creating a new fuel source. One very strong, could last a long time and doesn’t cause harm to the environment.",
             "Too bad it was really combustible and it blew up.",
@@ -103,29 +103,29 @@ public class story {
 
         // 6
         {
-            "Protagonist: I overheard those scientists debating whether or not they should do the experiment or not. I believed in them so did not say anything, I was also really tired and just wanted to get home and rest.",
+            "{plrName}: I overheard those scientists debating whether or not they should do the experiment or not. I believed in them so did not say anything, I was also really tired and just wanted to get home and rest.",
             "Michael: You should have told them not to risk it! So many people are dead, hospitalized, or sick including you. That was selfish, at least you told me about this. If you lied or did not say anything it would be a lot worse."
         },
 
         // 7
         {
-            "Protagonist: I didn't hear the scientists. "
+            "{plrName}: I didn't hear the scientists. "
         },
 
         // 8
         {
             "Michael: All of Hupani right now is in utter chaos. Certain people who breathe in specific coloured gases either die, mutate and get stronger. I wonder what Dr. Eisenhower was in that lab.",
-            "Protagonist: What happened to me? I don’t feel that different right now.",
+            "{plrName}: What happened to me? I don’t feel that different right now.",
             "Michael: You look normal right now, maybe it takes a while to show the mutation or the power. You are still alive, so I doubt you are going to die from the virus. I’m gonna go check on my family, just rest.",
             "Michael left your apartment and ran to his family’s house",
             "You decide to take a nap due to the amount of things that happened to you",
-            "20 minutes later, your back start to hurt",
+            "20 minutes later, your back starts to hurt",
             "You start sweating heavily again and your arms and legs feel a lot heavier",
             "Your muscles start to ache and you start screaming again",
             "After one minute of agonizing pain, your arms and legs get bigger, your muscles gets stronger and you grow a pair of wings",
             "One half angel, one half demon",
             "You limp over to the mirror to check yourself",
-            "Protagonist: What happened to me? Why do I have different wings? I feel so much stronger. I-",
+            "{plrName}: What happened to me? Why do I have different wings? I feel so much stronger. I-",
             "In the middle of your sentence, you here smashing and screaming, it’s coming from outside.",
             "You rush outside and spot a group of thugs trying to rob Michael and his family.",
             "Michael: Hey {plrName}, please help me!",
@@ -136,14 +136,14 @@ public class story {
 
         // 9
         {
-            "Protagonist: Ok Michael, I'll fight these guys and you help your family.",
-            "Protagonist engages on the thugs"
+            "{plrName}: Ok Michael, I'll fight these guys and you help your family.",
+            "{plrName} engages on the thugs"
         },
         // 10
         {
-            "Protagonist: I don't think I can help. I don't know how strong I am yet, this power could kill you too if I get out of control. It’s too risky.",
+            "{plrName}: I don't think I can help. I don't know how strong I am yet, this power could kill you too if I get out of control. It’s too risky.",
             "Michael: I BEG YOU, PLEASE HELP ME. MY FAMILY WILL BE INJURED.",
-            "Protagonist: I’m sorry, I can't help.",
+            "{plrName}: I’m sorry, I can't help.",
             "The thugs are laughing at you and calling you weak and a coward",
             "Thugs: What a pathetic guy. HAHAHAHA! Let’s get him too.",
             "Out of anger you want to start fighting", 
@@ -156,12 +156,12 @@ public class story {
         {
             "You beat two of the thugs",
             "The other thugs from the group are scared off",
-            "Michael: Thank you so much (Protagonist name) for saving my family",
-            "Protagonist: I didn’t know I wielded so much power and that I could control it. I’m happy that helped you anyways.",
+            "Michael: Thank you so much ({plrName} name) for saving my family",
+            "{plrName}: I didn’t know I wielded so much power and that I could control it. I’m happy that helped you anyways.",
             "Michael: I am in debt to you. What are you gonna do about this town?",
-            "Protagonist: I will try to help all that needs help and disband the groups that try to take advantage of this chaos.",
+            "{plrName}: I will try to help all that needs help and disband the groups that try to take advantage of this chaos.",
             "Michael: I can help you on this journey. I may not be as strong as you but I am fairly good at gadgets and stuff. I can make you items if you give me gold. (Shop system thingy)",
-            "Protagonist: Okay, thanks!",
+            "{plrName}: Okay, thanks!",
             "Michael’s family goes back to their apartment and Michael joins the squad.",
             "Micheal: Let’s go help other people!",
         },
@@ -201,7 +201,6 @@ public class story {
         // 15
         {
             "You didn't bring Michael with you.",
-            "[- Sanity]",
             "You travel to eastern Hupani by yourself.",
             "You enter the building.",
             "A bearded man is sitting on a chair.",
@@ -214,7 +213,6 @@ public class story {
         // 16
         {
             "You brought Michael with you. ",
-            "[+ Sanity]",
             "You travel to eastern Hupani with Michael.",
             "You and Michael enter the building.",
             "Michael: There he is, Juliano Capoto. He is the leader of the crime group that has been terrorizing eastern Hupani.",
@@ -238,7 +236,6 @@ public class story {
         // 17
         {
             "You join Juliano.",
-            "[- Sanity]",
             "*You feel a big thump on your head*",
             "*You blackout*"
             // Game over.
@@ -420,14 +417,13 @@ public class story {
         } else if (part == 4){
             // Answer the phone call
             if (optionChose == 0){
-                plr.addSanity();
-                optionSystem.tellPart(13);
+                optionSystem.tellPart(14);
                 optionSystem.askOption(5);
                 
-
             // Don't answer the phone call
             } else if (optionChose == 1){
-                optionSystem.tellPart(14);
+                plr.addSanity();
+                optionSystem.tellPart(13);
                 optionSystem.askOption(5);
             }
 
