@@ -64,7 +64,7 @@ public class story {
             "Scientist #2: Let’s do this.",
             "Scientist #1 & #3 agree and they start walking back into the laboratory",
             "{clearScreen}",
-            "After hearing that you were concerned but you put your faith in the scientist to not cause an accident",
+            "After hearing that, you were concerned, but put your faith in the scientist to not cause an accident",
             "You finally get home and eat dinner and catch up on some shows you have missed due to work",
             "Your eyes became tired and you start to fall asleep",
             "You are fast asleep until you hear an explosion",
@@ -403,7 +403,7 @@ public class story {
                 optionSystem.tellPart(9);
 
                 // Setup combat for thugs
-                cSystem.setupFight("thugs", 100);
+                cSystem.encounter("thugs", 100);
                 
                 // After the fight is done
                 optionSystem.tellPart(11);
@@ -417,7 +417,7 @@ public class story {
                 optionSystem.tellPart(10);
 
                 // Setup combat for thugs
-                cSystem.setupFight("thugs", 100);
+                cSystem.encounter("thugs", 100);
 
                 // After the fight is done
                 optionSystem.tellPart(11);
@@ -465,7 +465,7 @@ public class story {
             // Good ending
             } else if (optionChose == 1){
                 optionSystem.tellPart(18);
-                cSystem.setupFight("boss", 300);
+                cSystem.encounter("boss", 300);
                 optionSystem.tellPart(19);
                 optionSystem.tellPart(20);
                 util.wait(5.0);

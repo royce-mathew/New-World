@@ -44,8 +44,8 @@ public class combatSystem {
                 // Subtract 10 hp from player
                 plr.setHp(plr.getHp() - 10);
 
-                // Run setup fight becuase it acts as a option selection menu
-                setupFight(person, enemyHp);
+                // Run setup encounter becuase it acts as a option selection menu
+                encounter(person, enemyHp);
 
             } else {
 
@@ -68,7 +68,7 @@ public class combatSystem {
              plr.setHp(plr.getHp() - 10);
 
              // Run this method again (recursive methods)
-             setupFight(person, enemyHp);
+             encounter(person, enemyHp);
         }
 
 
@@ -79,7 +79,10 @@ public class combatSystem {
         if (plr.getPotions() == 0) {
             // Tell player that they have no potions left, start the fight again
             util.print("You have no potions!");
-            startFight(person, enemyHp);
+            util.wait(1.0);
+
+            // Go back to options
+            encounter(person, enemyHp);
 
         // Health potions fill the player's health up
         } else {
@@ -90,7 +93,7 @@ public class combatSystem {
        
     }
 
-    public void setupFight(String person, int hp){
+    public void encounter(String person, int hp){
         util.clearScreen();
         util.print(person + " HP: " + hp + "/100");
         util.print("Your HP: " + plr.getHp() + "/100");
@@ -112,7 +115,8 @@ public class combatSystem {
 
         } else {
             util.print("Wrong option. Please choose option 1 or 2");
-            setupFight(person, hp);
+            util.wait(1.0);
+            encounter(person, hp);
         }
     }
 }
