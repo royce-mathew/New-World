@@ -1,34 +1,36 @@
+// Package : Tells the program that this class is stored inside a folder
 package modules;
 
-import java.util.Scanner;
-
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.text.DefaultEditorKit;
-
+// Import the SimpleDateFormat and Date (Used for getting time)
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Option handler class
 public class optionHandler {
     // These variables are not static because using DateFormats as static variables can cause Runtime Exceptions
+    // DateFormat: Create a new dateFormat in the format (hour : minutes)
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
+    // create a new date using the dateFormat in the last line
     private String formattedDate = dateFormat.format(new Date());
 
-    // Variables that we can use later
-    Scanner sc;
-    player plr;
-    story mainStory;
+    // Initialize a plr variable (Used for getting info from the player)
+    private player plr;
+    // Initialize a mainstory variable (Used for getting the story)
+    private story mainStory;
 
     /* Constructor */
-    public optionHandler(Scanner _sc, player _plr, story _story){
-        sc = _sc;
+    public optionHandler(player _plr, story _story){
+        // Set the player and story as the passed args
         plr = _plr;
         mainStory = _story;
     }
 
-    // Private functions
+    // Private methods
     private void readStory(String[] story){
         // Loop through each string inside the string array
         for (String detailedStrings : story){
+
+            /* These if statements check for triggers */
             // Check if the string includes plrName
             if (detailedStrings.contains("{plrName}")) {
                 // Replace that with the player's name
@@ -41,25 +43,23 @@ public class optionHandler {
                 detailedStrings = detailedStrings.replace("{systemTime}", formattedDate);
             }
             if (detailedStrings.contains("{clearScreen}")){
-
                 // Replace the text with nothing because it will still print in next line 
                 detailedStrings = detailedStrings.replace("{clearScreen}", "");
-
                 // Clear the screen
                 util.clearScreen();
             }
 
-            // Print those strings
+            // Print the strings
             util.printStory(detailedStrings);
 
             // Wait one second
-            util.wait(0.5);
+            util.wait(1.0);
             
         }
     }
 
 
-    // TellPart Public function : Only tells the story, without options
+    // TellPart Public function : Tells the story of the part passed
     public void tellPart(int part){
         // Get the mainstory
         String[][] storyLine = mainStory.getStory();
@@ -89,6 +89,7 @@ public class optionHandler {
 
         // Loop through the question list
         for (int i = 0; i < mainData.length; i++){
+            // Print the index and the option
             util.print("["+i+"]: " + mainData[i]);
         }
         
@@ -97,11 +98,11 @@ public class optionHandler {
         util.print("Choose Option:");
 
         // Get the user input
-        String option = sc.nextLine();
+        String option = util.nextLine();
 
         // Check if the user input can be parsed onto a string
             // Pass the range as the third argument (Range: 0-1)
-        int newOp = check.checkIfNumber(sc, option, 1);
+        int newOp = check.checkIfNumber(option, 1);
 
         // Run the chooseOption method from mainStory class
         mainStory.chooseOption(question, newOp);

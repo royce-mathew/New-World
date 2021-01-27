@@ -1,6 +1,5 @@
+// Package : Tells the program that this class is stored inside a folder
 package modules;
-
-import java.util.Scanner;
 
 public class questionHandler {
 
@@ -14,32 +13,37 @@ public class questionHandler {
         throw new IllegalStateException("Utility class");
     }
 
-    public static boolean generateQuestion(Scanner sc){
+    // Generate question method, generates a random question using Math.random
+    public static boolean generateQuestion(){
+        // Give user info on what's being printed
         util.print("Answer this question: ");
         // Math.random generates a number between 0-1, Math.round rounds up the random number and returns a double.
-
         // This will give us a number between 1-3
-        double randomOperator = Math.floor( Math.random() * 3);
+        double randomOperator = Math.round( Math.random() * 3);
 
         // Pick a random number between 1 to 100
+        // Math.ceil rounds the integer up
         double firstNum = Math.ceil ( Math.random() * 100);
 
         // Add 1 just so we don't get divide by 0 error
-        double secondNum = Math.round ( Math.random() * 5) + 1;
+        double secondNum = Math.round ( Math.random() * 5) + 1.0;
 
         // Division
+        // if the randomOperator chosen by Math.random is equal to 0
         if (randomOperator == 0.0){
-            // Prompt
+            // Give user info on what's about to be printed
             util.print("== Operation : Division ==");
-            util.print("What is " + firstNum + " / " + secondNum + "? (Round to an integer)");
+            // Ask user prompt
+            util.print("What is " + firstNum + " / " + secondNum + "? (Round to an integer)::");
 
-            // Get Input
-            String givenAns = sc.nextLine();
+            // Get Input from user
+            String givenAns = util.nextLine();
 
-            // Convert input
-            int inputAns = check.checkIfNumber(sc, givenAns);
+            // Convert input to an integer using check class and checkIfNumber method
+            int inputAns = check.checkIfNumber(givenAns);
 
-            // Check input (int) casts long to int and converts the long to int
+            // Return a boolean based on if the answer is right or not
+            //  (int) casts long to int and converts the long to int
             return (inputAns == (int) (firstNum / secondNum));
 
 
@@ -48,12 +52,11 @@ public class questionHandler {
             util.print("== Operation : Multiplication ==");
             util.print("What is " + firstNum + " * " + secondNum + "?");
 
-            // Get Input
-            String givenAns = sc.nextLine();
+            String givenAns = util.nextLine();
 
-            // Convert input
-            int inputAns = check.checkIfNumber(sc, givenAns);
+            int inputAns = check.checkIfNumber(givenAns);
 
+            // Check if the userinput equals to the firstNumber multiplied by the secondNum
             return (inputAns ==  (int)(firstNum * secondNum));
         
         // Addition
@@ -61,12 +64,11 @@ public class questionHandler {
             util.print("== Operation : Addition ==");
             util.print("What is " + firstNum + " + " + secondNum + "?");
 
-            // Get Input
-            String givenAns = sc.nextLine();
+            String givenAns = util.nextLine();
 
-            // Convert input
-            int inputAns = check.checkIfNumber(sc, givenAns);
+            int inputAns = check.checkIfNumber(givenAns);
 
+            // Check if the userinput equals to the firstNumber added by the secondNum
             return (inputAns ==  (int)(firstNum + secondNum));
 
         // Subtraction
@@ -74,11 +76,11 @@ public class questionHandler {
             util.print("== Operation : Subtraction ==");
             util.print("What is " + firstNum + " - " + secondNum + "?");
 
-            // Get Input
-            String givenAns = sc.nextLine();
+            String givenAns = util.nextLine();
 
-            // Convert input
-            int inputAns = check.checkIfNumber(sc, givenAns);
+            int inputAns = check.checkIfNumber(givenAns);
+            
+            // Check if the userinput equals to the firstNumber subtracted by the secondNum
             return (inputAns ==  (int)(firstNum - secondNum));
         }
 

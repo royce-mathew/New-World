@@ -1,28 +1,29 @@
+// Package : Tells the program that this class is stored inside a folder
 package modules;
 
-import java.util.Scanner;
-
+// Story class (stores everything related to the story)
 public class story {
-    player plr;
-    Scanner sc;
-    optionHandler optionSystem;
-    combatSystem cSystem;
+    // Initialize private variables
+    private player plr;
+    private optionHandler optionSystem;
+    private combatSystem cSystem;
 
+    // Story line : A 2d array which has the strings from parts of the story. Each subArray inside the mainArray can be indexed, in which, the index is considered the part
     private String[][] storyLine = {
-        // 0
+        // Part 0
         {
             "You hear the alarm ringing. ",
             "Its {systemTime}",
             "The sun shines on your eyes."
         },
-        // 1
+        // Part 1
         {
             "You tuck yourself underneath your blanket and attempt to sleep for 10 more minutes.",
             "Accidentally, you sleep for another 30 mins and rush to get out of your house",
             "You shower, brush your teeth and grab some toast before rushing outside",
             "On your way to work, you best friend, Michael, offered you a ride to your work"
         },
-        // 2
+        // Part 2
         {
             "You wake up",
             "You rub your eyes while trying to get up from your bed",
@@ -33,17 +34,17 @@ public class story {
             "On your way to work, you best friend, Michael, offered you a ride to your work"
         },
 
-        // 3
+        // Part 3
         {
             "After agreeing to have a ride, you hop in his car and start going to work",
             "You talk to him about your favourite food and you guys joke around"
         },
-        // 4
+        // Part 4
         {
             "He still insists you go with him."
         },
         
-        // 5
+        // Part 5
         {
             "While traveling you and michael talk about the recent news.",
             "You eventually reach your destination.",
@@ -110,18 +111,18 @@ public class story {
             "Didn't you hear anything about the experiment they were doing?"
         },
 
-        // 6
+        // Part 6
         {
             "{plrName}: I overheard those scientists debating whether or not they should do the experiment or not. I believed in them so I didn't say anything, I was also really tired and just wanted to get home and rest.",
             "Michael: You should have told them not to risk it! So many people are dead, hospitalized, or sick including you. That was selfish, at least you told me about this. If you lied or did not say anything it would be a lot worse."
         },
 
-        // 7
+        // Part 7
         {
             "{plrName}: I didn't hear the scientists. "
         },
 
-        // 8
+        // Part 8
         {
             "Michael: All of Hupani right now is in utter chaos. Certain people who breathe in specific coloured gases either die, mutate and get stronger. I wonder what Dr. Eisenhower was doing in that lab.",
             "{plrName}: What happened to me? I don’t feel that different right now.",
@@ -146,12 +147,12 @@ public class story {
         },
 
 
-        // 9
+        // Part 9
         {
             "{plrName}: Ok Michael, I'll fight these guys and you help your family.",
             "{plrName} engages on the thugs"
         },
-        // 10
+        // Part 10
         {
             "{plrName}: I don't think I can help. I don't know how strong I am yet, this power could kill you too if I get out of control. It’s too risky.",
             "Michael: I BEG YOU, PLEASE HELP ME. MY FAMILY WILL BE INJURED.",
@@ -164,7 +165,7 @@ public class story {
 
         // FIGHT SCENE
 
-        // 11
+        // Part 11
         {
             "You beat two of the thugs",
             "The other thugs from the group are scared off",
@@ -175,7 +176,7 @@ public class story {
             "Micheal: Let’s go help other people!",
         },
 
-        // 12
+        // Part 12
         {
             "[5 days later]",
             "You get a phone call",
@@ -188,7 +189,7 @@ public class story {
             "Should I go?"
         },
 
-        // 13
+        // Part 13
         {
             "You didn't go to the location that the caller called from.",
             "",
@@ -202,12 +203,12 @@ public class story {
             "Should I bring Michael with me?"
         },
 
-        // 14
+        // Part 14
         {
             "You decide to go to eastern hupani",
             "Should I bring Michael with me?"
         },
-        // 15
+        // Part 15
         {
             "You didn't bring Michael with you.",
             "You travel to eastern Hupani by yourself.",
@@ -219,7 +220,7 @@ public class story {
             "I'll forgive you for everything, my dead men, the damage you've done to my reputation, for everything. Just let me take a sample of your blood.",
             "Join Juliano and save michael's family?",
         },
-        // 16
+        // Part 16
         {
             "You brought Michael with you. ",
             "You travel to eastern Hupani with Michael.",
@@ -245,7 +246,7 @@ public class story {
             "",
             "Join Juliano?"
         },
-        // 17
+        // Part 17
         {
             "You join Juliano.",
             "*You feel a big thump on your head*",
@@ -254,13 +255,13 @@ public class story {
             
         },
 
-        // 18
+        // Part 18
         {
             "You decline Juliano's offer and decide to fight him.",
             // Juliano fight
         },
 
-        // 19
+        // Part 19
         {
             "While on his dying breath Juliano says",
             "Juliano: Tell. Timothy.. To activate Protocol.. 102",
@@ -274,7 +275,7 @@ public class story {
             "Timothy presses a button.",
         },
 
-        // 20
+        // Part 20
         {
             "== 2 Days Later ==",
             "It is 8:00 in the night.",
@@ -285,18 +286,20 @@ public class story {
 
     };
 
+
+    // OptionData : A 2d array which stores different options. Each subArray inside the main array can be indexed, in which the index can be considered as the question number.
     private String[][] optionData = {
-        // 0
+        // 0 "Wake up"
         {
             "Sleep for 10 more minutes",
             "Wake up"
         },
-        // 1
+        // 1 "Should go with michael?"
         {
             "You agree to hop in the car with him",
             "You tell him it's okay"
         },
-        // 2
+        // 2 "Did you hear the scientists talking"
         {
            "Tell him you overheard them talking about it",
            "Don’t tell him that you over heard it"
@@ -314,7 +317,7 @@ public class story {
             "Don't go to Eastern Hupani"
         },
 
-        // 5: Bring Michael>
+        // 5: Bring Michael?
         {
             "Bring Michael With you",
             "Don't bring Michael with you"
@@ -332,152 +335,211 @@ public class story {
     
     
     /* Constructor */
-    public story(player _plr, Scanner _sc){
+    public story(player _plr){
+        // Initiate the private var plr as the passed parameter
         plr = _plr;
-        sc = _sc;
-        cSystem = new combatSystem(plr, sc);
+        // Make a new combat system for the player
+        cSystem = new combatSystem(plr);
     }
 
+    // Set option handler
     public void setOptionHandler(optionHandler _optionHandler){
+        // Sets the optionhandler as the passed parameter
         optionSystem = _optionHandler;
     }
 
-    
 
-    public void chooseOption(int part, int optionChose){
+    /* Part methods */
+        /*
+            Each part of the story has it's own method because if it was all inside one method, 
+            the congitive complexity would increase by a lot. Making the code unreadable.
+        */
 
-        // Sleep Question
-        if (part == 0){
-            // You sleep for 10 more minutes
-            if (optionChose == 0){
-                optionSystem.tellPart(1);
-                optionSystem.askOption(1);
+    // Part 0  (Wake up)
+    private void partZero(int optionChose){
+        // You sleep for 10 more minutes
+        if (optionChose == 0){
+            // The tellPart Runs through the story list and tells the user that part
+            optionSystem.tellPart(1);
+            // Ask option method gets the option of the parameter passed as index for the String list optionData
+            optionSystem.askOption(1);
 
-            // You wake up instantly
-            } else if (optionChose == 1){
-                plr.addSanity();
-                optionSystem.tellPart(2);
-                optionSystem.askOption(1);
-            }
-
-        // Should go with michael question
-        } else if (part == 1){
-            // You agree to hop in his car
-            if (optionChose == 0){
-                plr.addSanity();
-                optionSystem.tellPart(3);
-                optionSystem.tellPart(5);
-                optionSystem.askOption(2);
-
-            // You disagree
-            } else if (optionChose == 1){
-                plr.subtractSanity();  
-                optionSystem.tellPart(4);
-                optionSystem.tellPart(5);
-                optionSystem.askOption(2);
-            }
-
-        // Scientist hearing question
-        } else if (part == 2){
-            if (optionChose == 0){
-                plr.addSanity();
-                optionSystem.tellPart(6);
-                optionSystem.tellPart(8);
-
-                optionSystem.askOption(3);
-                
-
-            } else if (optionChose == 1){
-                plr.subtractSanity();
-                optionSystem.tellPart(7);
-                optionSystem.tellPart(8);
-
-                optionSystem.askOption(3);
-            }
-
-        // Help Michael Fight thugs question
-        } else if (part == 3){
-            // Help Michal Fight The Thugs
-            if (optionChose == 0){
-                plr.addSanity();
-                optionSystem.tellPart(9);
-
-                // Setup combat for thugs
-                cSystem.encounter("thugs", 100);
-                
-                // After the fight is done
-                optionSystem.tellPart(11);
-                optionSystem.tellPart(12);
-
-                optionSystem.askOption(4);
-
-            // Don't help Michael fight the thugs
-            } else if (optionChose == 1){
-                plr.subtractSanity();
-                optionSystem.tellPart(10);
-
-                // Setup combat for thugs
-                cSystem.encounter("thugs", 100);
-
-                // After the fight is done
-                optionSystem.tellPart(11);
-                optionSystem.tellPart(12);
-
-                optionSystem.askOption(4);
-            }
-
-        // Go to eastern hupani
-        } else if (part == 4){
-            // Answer the phone call
-            if (optionChose == 0){
-                optionSystem.tellPart(14);
-                optionSystem.askOption(5);
-                
-            // Don't answer the phone call
-            } else if (optionChose == 1){
-                plr.addSanity();
-                optionSystem.tellPart(13);
-                optionSystem.askOption(5);
-            }
-
-        // Bring Michael with you?
-        } else if (part == 5){
-            // Bring Michael
-            if (optionChose == 0){
-                plr.subtractSanity();
-                optionSystem.tellPart(15);
-                optionSystem.askOption(6);
-
-            // Didn't bring Michael with you
-            } else if (optionChose == 1){
-                optionSystem.tellPart(16);
-                optionSystem.askOption(6);
-            }
-
-        // Join Juliano?
-        } else if (part  == 6) {
-            // Bad ending
-            if (optionChose == 0){
-                optionSystem.tellPart(17);
-                util.wait(5.0);
-                System.exit(0);
-
-            // Good ending
-            } else if (optionChose == 1){
-                optionSystem.tellPart(18);
-                cSystem.encounter("boss", 300);
-                optionSystem.tellPart(19);
-                optionSystem.tellPart(20);
-                util.wait(5.0);
-
-            }
+        // You wake up instantly
+        } else if (optionChose == 1){
+            // Add sanity method adds +1 Sanity to the player (Sanity helps the player do more damage)
+            plr.addSanity();
+            // Tell part 2 of the story
+            optionSystem.tellPart(2);
+            // ask option 1
+            optionSystem.askOption(1);
         }
     }
 
+    // Part 1 (Should go with michael?)
+    private void partOne(int optionChose){
+        // You agree to hop in his car
+        if (optionChose == 0){
+            plr.addSanity();
+
+            optionSystem.tellPart(3);
+            optionSystem.tellPart(5);
+            optionSystem.askOption(2);
+
+        // You disagree
+        } else if (optionChose == 1){
+            // Subtract sanity method subtracts 1 sanity from the player which makes the player do less damage
+            plr.subtractSanity();  
+
+            optionSystem.tellPart(4);
+            optionSystem.tellPart(5);
+            // Ask option 2 ()
+            optionSystem.askOption(2);
+        }
+    }
+
+    // Part 2 (Did you hear the scientists talking)
+    private void partTwo(int optionChose){
+
+        // You overheard the scientists talking (truth)
+        if (optionChose == 0){
+            plr.addSanity();
+
+            optionSystem.tellPart(6);
+            optionSystem.tellPart(8);
+
+            optionSystem.askOption(3);
+            
+        // You didn't overhear the scientists talking (lie)
+        } else if (optionChose == 1){
+            plr.subtractSanity();
+            optionSystem.tellPart(7);
+            optionSystem.tellPart(8);
+
+            optionSystem.askOption(3);
+        }
+    }
+
+    // Part 3 (Help Michael Fight thugs?)
+    private void partThree(int optionChose){
+        // Help Michal Fight The Thugs
+        if (optionChose == 0){
+            plr.addSanity();
+            optionSystem.tellPart(9);
+
+            // Setup combat system for thugs (with 100 hp)
+            cSystem.encounter("thugs", 100);
+            
+            // After the fight is done
+            optionSystem.tellPart(11);
+            optionSystem.tellPart(12);
+
+            optionSystem.askOption(4);
+
+        // Don't help Michael fight the thugs
+        } else if (optionChose == 1){
+            plr.subtractSanity();
+            optionSystem.tellPart(10);
+
+            // Setup combat system for thugs (with 100 hp)
+            cSystem.encounter("thugs", 100);
+
+            // After the fight is done
+            optionSystem.tellPart(11);
+            optionSystem.tellPart(12);
+
+            optionSystem.askOption(4);
+        }
+    }
+
+    // Part 4 (Go to eastern hupani?)
+    private void partFour(int optionChose){
+        // Answer the phone call
+        if (optionChose == 0){
+            optionSystem.tellPart(14);
+            optionSystem.askOption(5);
+            
+        // Don't answer the phone call
+        } else if (optionChose == 1){
+            plr.addSanity();
+            optionSystem.tellPart(13);
+            optionSystem.askOption(5);
+        }
+    }
+
+    // Part 5 (Bring Michael with you?)
+    private void partFive(int optionChose){
+        // Bring Michael
+        if (optionChose == 0){
+            plr.subtractSanity();
+            optionSystem.tellPart(15);
+            optionSystem.askOption(6);
+
+        // Didn't bring Michael with you
+        } else if (optionChose == 1){
+            optionSystem.tellPart(16);
+            optionSystem.askOption(6);
+        }
+    }
+
+    // Part six (Join Juliano?)
+    private void partSix(int optionChose){
+        // Bad ending
+        if (optionChose == 0){
+            optionSystem.tellPart(17);
+            util.wait(5.0);
+            System.exit(0);
+
+        // Good ending
+        } else if (optionChose == 1){
+            optionSystem.tellPart(18);
+            cSystem.encounter("boss", 300);
+            optionSystem.tellPart(19);
+            optionSystem.tellPart(20);
+            util.wait(5.0);
+
+        }
+    }
+    
+
+    
+    /* Public methods */
+    public void chooseOption(int part, int optionChose){
+        // Sleep Question
+        if (part == 0){
+           partZero(optionChose);
+
+        // Should go with michael question
+        } else if (part == 1){
+            partOne(optionChose);
+
+        // Scientist hearing question
+        } else if (part == 2){
+            partTwo(optionChose);
+
+        // Help Michael Fight thugs?
+        } else if (part == 3){
+            partThree(optionChose);
+
+        // Go to eastern hupani?
+        } else if (part == 4){
+            partFour(optionChose);
+
+        // Bring Michael with you?
+        } else if (part == 5){
+            partFive(optionChose);
+
+        // Join Juliano?
+        } else if (part  == 6) {
+            partSix(optionChose);
+        }
+    }
+
+    // GetStory method, returns the storyLine array
     public String[][] getStory(){
         return storyLine;
     }
 
+    // getOptionData method, returns the optionData array
     public String[][] getOptionData(){
         return optionData;
     }
