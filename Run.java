@@ -8,7 +8,7 @@
         Jien Terence Laure
 
     Date:
-        2021-01-27
+        2021-01-28
         
     Description:
         This project is a story based immersive rpg experience. The player will be able to choose what the future of the character will be. 
@@ -24,7 +24,7 @@
             story : Handles everything related to the main story
             util : Contians utility that most methods use; such as print, nextLine and more.
 
-    This java program is designed for JavaSE-11, specifically AdoptOpenJDK\jdk-11.09.11-hotspot
+    This java program is designed for VSCode, JavaSE-11, specifically AdoptOpenJDK\jdk-11.09.11-hotspot
 
 
     Note:
