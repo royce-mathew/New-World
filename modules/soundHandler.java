@@ -7,6 +7,11 @@ package modules;
     This method of playing audio files is from JavaTutorials101:
         This video describes how the AudioSystem works 
         https://www.youtube.com/watch?v=QVrxiJyLTqU
+
+    Note:
+        The sound system only works on specific IDE's. A lot of features are taken away from the program in IntelliJ IDEA. 
+        Features such as clear screen and
+        sound support are not there.
 */
 
 // Used for getting the path and the file of the clip

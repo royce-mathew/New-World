@@ -24,7 +24,7 @@
             story : Handles everything related to the main story
             util : Contians utility that most methods use; such as print, nextLine and more.
 
-    This java program is designed for VSCode, JavaSE-11, specifically AdoptOpenJDK\jdk-11.09.11-hotspot
+    This java program is designed in VSCode, for JavaSE-11, specifically AdoptOpenJDK\jdk-11.09.11-hotspot
 
 
     Note:

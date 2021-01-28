@@ -47,8 +47,8 @@ public class questionHandler {
             int inputAns = check.checkIfNumber(givenAns);
 
             // Return a boolean based on if the answer is right or not
-            //  (int) casts long to int and converts the long to int
-            return (inputAns == (int) (firstNum / secondNum));
+            // This is done with Math.round instead of casting int because it would basically truncate the number
+            return (inputAns == Math.round((firstNum / secondNum)));
 
 
         // Multiplication
@@ -61,6 +61,7 @@ public class questionHandler {
             int inputAns = check.checkIfNumber(givenAns);
 
             // Check if the userinput equals to the firstNumber multiplied by the secondNum
+            //  (int) casts long to int and converts the long to int
             return (inputAns ==  (int)(firstNum * secondNum));
         
         // Addition
