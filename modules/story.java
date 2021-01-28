@@ -4,8 +4,11 @@ package modules;
 // Story class (stores everything related to the story)
 public class story {
     // Initialize private variables
+    // plr stores the current player object
     private player plr;
+    // optionSystem stores the current optionHandler object
     private optionHandler optionSystem;
+    // combatSystem stores the current combatSystem object
     private combatSystem cSystem;
 
     // Story line : A 2d array which has the strings from parts of the story. Each subArray inside the mainArray can be indexed, in which, the index is considered the part
@@ -13,6 +16,8 @@ public class story {
         // Part 0
         {
             "You hear the alarm ringing. ",
+            // Play the alarm sound located in ./resources
+            "{play: alarm}",
             "Its {systemTime}",
             "The sun shines on your eyes."
         },
@@ -37,11 +42,13 @@ public class story {
         // Part 3
         {
             "After agreeing to have a ride, you hop in his car and start going to work",
+            "{play: car}",
             "You talk to him about your favourite food and you guys joke around"
         },
         // Part 4
         {
-            "He still insists you go with him."
+            "He still insists you go with him.",
+            "{play: car}"
         },
         
         // Part 5
@@ -65,12 +72,19 @@ public class story {
             "Scientist #2: Let’s do this.",
             "Scientist #1 & #3 agree and they start walking back into the laboratory",
             "{clearScreen}",
-            "After hearing that, you were concerned, but put your faith in the scientist to not cause an accident",
+            "After hearing that, you were concerned, but put your faith in the scientists to not cause an accident",
             "You finally get home and eat dinner and catch up on some shows you have missed due to work",
             "Your eyes became tired and you start to fall asleep",
+
+            // Play the explosion sound
+            "{play: explosion}",
+
             "You are fast asleep until you hear an explosion",
-            "You turn on the tv to check the news and open the curtains to learn what was happening",
             "",
+            "You turn on the tv to check the news and open the curtains to learn what was happening",
+
+            // Play the radio sound
+            "{play: radio}",
             "News Anchor: Laboratory 'Future' owned by Dr. Eisenhower has recently been in an accident. Police are searching the area for any bodies and the cause of this explosion",
             "News Anchor: The laboratory seems to be emitting some sort of mysterious fumes. The state is currently in a state of emergency. Health advisors reccommend not to inhale these fumes and go outside, until deemed safe",
             "You take a look outside and see a sort of blue mist covering the whole area",
@@ -79,6 +93,7 @@ public class story {
             "It's currently {systemTime}.",
             "What's happening?",
             "You feel a sort of uneasiness.",
+            "{play: heartbeat}",
             "Your head starts to hurt, knees become weak and heart starts pounding faster..",
             ".and faster.",
             "",
@@ -132,6 +147,7 @@ public class story {
             "",
             "You feel drowsy......",
             "{clearScreen}",
+            "{play: scaryAmbience}",
             "Your back starts to hurt",
             "You start sweating heavily again and your arms and legs feel a lot heavier",
             "Your muscles start to ache and you start screaming again",
@@ -179,6 +195,7 @@ public class story {
         // Part 12
         {
             "[5 days later]",
+            "{play: phonecall}",
             "You get a phone call",
             "Anonymous: Hello there, {plrName}",
             "Anonymous: I've been waiting to talk to you.",
@@ -194,6 +211,7 @@ public class story {
             "You didn't go to the location that the caller called from.",
             "",
             "[2 days later]",
+            "{play: doorKnock}",
             "You hear knocks at your door.",
             "You open the door.",
             "There are pictures of Michael's family.",
@@ -211,6 +229,7 @@ public class story {
         // Part 15
         {
             "You didn't bring Michael with you.",
+            "{play: car}",
             "You travel to eastern Hupani by yourself.",
             "You enter the building.",
             "A bearded man is sitting on a chair.",
@@ -226,7 +245,7 @@ public class story {
             "You travel to eastern Hupani with Michael.",
             "You and Michael enter the building.",
             "",
-            "Michael: There he is, Juliano Capoto. He is the leader of the crime group that has been terrorizing eastern Hupani.",
+            "Michael: There he is, Juliano Capoto. The leader of the crime group that's been terrorizing eastern Hupani.",
             "You two walk into the building and encounter Juliano.",
             "Juliano: Do you know who I am? Do you know who you messed with?",
             "Juliano gets angry and gets up from his chair",
@@ -335,14 +354,26 @@ public class story {
     
     
     /* Constructor */
+    /**
+     * Story constructor, each time the program initializes a story, this constructor will make a combat system for the player.
+     * The setOptionHandler is done seperately and not inside a constructor because the optionHandler 
+     * requires the player and the mainstory as a parameter.
+     * 
+     * @param _plr The player object that is in use
+     */
     public story(player _plr){
         // Initiate the private var plr as the passed parameter
         plr = _plr;
+
         // Make a new combat system for the player
         cSystem = new combatSystem(plr);
     }
 
-    // Set option handler
+    /**
+     * Set option handler
+     * 
+     * @param _optionHandler The optionHandler that is used for the player (This will be given by the main file (Run.java))
+     */
     public void setOptionHandler(optionHandler _optionHandler){
         // Sets the optionhandler as the passed parameter
         optionSystem = _optionHandler;
@@ -470,14 +501,15 @@ public class story {
     private void partFive(int optionChose){
         // Bring Michael
         if (optionChose == 0){
-            plr.subtractSanity();
-            optionSystem.tellPart(15);
+            optionSystem.tellPart(16);
             optionSystem.askOption(6);
 
         // Didn't bring Michael with you
         } else if (optionChose == 1){
-            optionSystem.tellPart(16);
+            plr.subtractSanity();
+            optionSystem.tellPart(15);
             optionSystem.askOption(6);
+            
         }
     }
 
@@ -486,7 +518,12 @@ public class story {
         // Bad ending
         if (optionChose == 0){
             optionSystem.tellPart(17);
-            util.wait(5.0);
+            // Wait 1 second
+            util.wait(1.0);
+            // Clear screen
+            util.clearScreen();
+            // Tell player game over
+            util.rollCredits();
             System.exit(0);
 
         // Good ending
@@ -495,14 +532,21 @@ public class story {
             cSystem.encounter("boss", 300);
             optionSystem.tellPart(19);
             optionSystem.tellPart(20);
-            util.wait(5.0);
-
+            util.wait(3.0);
+            util.rollCredits();
+            System.exit(0);
         }
     }
     
 
     
     /* Public methods */
+    /**
+     * ChooseOption Method, this runs before the player chooses an option
+     * 
+     * @param part The part of the story the player is on (The index of the current optionData subArray)
+     * @param optionChose The option that the player has chosen (The index that will be used to show the option inside the current subArray)
+     */
     public void chooseOption(int part, int optionChose){
         // Sleep Question
         if (part == 0){
@@ -534,12 +578,20 @@ public class story {
         }
     }
 
-    // GetStory method, returns the storyLine array
+    /**
+     * Returns the storyLine array
+     * 
+     * @return Return the storyLine 2d array
+    */ 
     public String[][] getStory(){
         return storyLine;
     }
 
-    // getOptionData method, returns the optionData array
+    /**
+     * Returns the optionData array 
+     * 
+     * @return The optionData 2d array
+     */
     public String[][] getOptionData(){
         return optionData;
     }

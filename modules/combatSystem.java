@@ -12,8 +12,14 @@ public class combatSystem {
         plr = _plr;
     }
 
-    // Private method start fight:
-        // Starts fight with enemy
+    // Private Methods
+    /**
+     * This method starts a fight with the enemy. Using the questionHandler class, it asks the player questions and if the player
+     * answers the question right, the player does damage to the enemy.
+     * 
+     * @param person The name of the enemy
+     * @param enemyHp The hp of the enemy
+     */
     private void startFight(String person, int enemyHp){
         // This line is used since there are only two enemies currently in game
         // Check if the enemy is the boss or the thug, we will use this string for determining the static hp, which tells the player how much damage the player has done
@@ -25,7 +31,8 @@ public class combatSystem {
             util.clearScreen();
             // Tell user what happened
             util.print("You got defeated by " + person);
-            util.print("GAME OVER");
+            util.print("Game Over.");
+            util.rollCredits();
             
             // Exit out of the program
             System.exit(0);
@@ -85,7 +92,12 @@ public class combatSystem {
 
     }
 
-    // Accepts person and enemyHp because it needs to call start fight
+    /**
+     * This method checks if the player has any potions, if the player does then it heals the player or goes back to the combat menu
+     * 
+     * @param person The name of the enemy (used for calling the combat menu back)
+     * @param enemyHp The hp of the enemy (Also used for calling the combat menu back)
+     */
     private void healUp(String person, int enemyHp){
         // if the player has on potions
         if (plr.getPotions() == 0) {
@@ -102,19 +114,29 @@ public class combatSystem {
             plr.subtractPotions();
             // Set playerHp to 100
             plr.setHp(100);
+
+            // Run the encounter method again and go back to main options
+            encounter(person, enemyHp);
         }
        
     }
 
-    // Enocunter method, takes arg person and hp (Npc Name, Hp of the npc)
-    public void encounter(String person, int hp){
+
+    // Public Methods
+    /**
+     * Encounter method, this gives the player a options to choose from. Currently includes fight and heal.
+     * 
+     * @param person The name of the enemy
+     * @param enemyHp The health of the enemy
+     */
+    public void encounter(String person, int enemyHp){
         // Check if the enemy is the boss or the thug, we will use this string for determining the static hp, which tells the player how much damage the player has done
         String staticHp = (person.compareTo("thugs") == 0) ? "/100" : "/300";
 
         // Clear the screen
         util.clearScreen();
         // Give NPC hp
-        util.print(person + " HP: " + hp + staticHp);
+        util.print(person + " HP: " + enemyHp + staticHp);
         // Give player hp
         util.print("Your HP: " + plr.getHp() + "/100");
 
@@ -133,12 +155,12 @@ public class combatSystem {
         // If the input is 1
         if (checkedOption == 1){
             // Start fight
-            startFight(person, hp);
+            startFight(person, enemyHp);
 
         // If the input is 2
         } else if (checkedOption == 2) {
             // Run the healUp method 
-            healUp(person, hp);
+            healUp(person, enemyHp);
 
         // If the player selected anything other than option 1 or 2
         } else {
@@ -147,7 +169,7 @@ public class combatSystem {
             // Wait 1 second
             util.wait(1.0);
             // Run the method again
-            encounter(person, hp);
+            encounter(person, enemyHp);
         }
     }
 }

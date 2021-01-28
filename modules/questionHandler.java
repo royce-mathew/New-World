@@ -13,7 +13,11 @@ public class questionHandler {
         throw new IllegalStateException("Utility class");
     }
 
-    // Generate question method, generates a random question using Math.random
+    /**
+     * Generate question method, generates a random question and a random operator using Math.random
+     * 
+     * @return A boolean which tells the program whether the player got the answer right or wrong.
+     */
     public static boolean generateQuestion(){
         // Give user info on what's being printed
         util.print("Answer this question: ");

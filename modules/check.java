@@ -10,6 +10,12 @@ public class check {
     }
 
     /* Private Methods */
+    /**
+     * This method gets the user input again and then returns it. Normally used if the user inputted 
+     * something wrong like a String instead of int or a negative integer and so on.
+     * 
+     * @return The new user input.
+     */
     private static String restateInput(){
         // Tell user that their input was invalid
         util.print("Invalid input. Please try again.\nEnter Value:");
@@ -21,7 +27,13 @@ public class check {
        return util.nextLine();
     }
 
-    // checkNegative method : Checks if an integer is negative
+    /* Public Methods */
+    /**
+     * This method checks if a integer is negative
+     * 
+     * @param value The value to check if negative
+     * @return The value passed if it is positive or a new user input
+     */
     public static int checkNegative(int value){
 
         // If the value passed is over 0
@@ -29,14 +41,24 @@ public class check {
             // Return the value
             return value;
         } else {
-            // If the value passed is above 0
-            restateInput();
+            // If the value passed is below 0
             util.print("Error: " + value + " cannot be negative");
-            return 0;
+            // Get the input again
+            String newInput = restateInput();
+
+            // Check if the input is a number and also check if the input is negative again.
+            return checkNegative(checkIfNumber(newInput));
         }
     }
 
-    // checkStringLength method : Checks if the passed string's length is bigger than the passed length
+    /**
+     * Checks if the passed string's length is bigger than or equal to the passed length
+     * 
+     * @param value The string that will be checked for it's length
+     * @param length The length of the string that is acceptable
+     * 
+     * @return The same value passed if it passes the check or a new input from the user
+     */
     public static String checkStringLength(String value, int length){
         // if the length of the string is bigger than or equal to the length passed
         if (value.length() >= length) {
@@ -53,8 +75,14 @@ public class check {
         }
     }
 
-
-    // This method checks if a string can be converted to a number
+    /**
+     * Checks if a string can be converted a number, if it can't then tries to get input 
+     * again from the user and then converts it to a number
+     * 
+     * @param value The string value that will be converted to a number
+     * 
+     * @return The int value that is the converted value of the passed parameter.
+     */
     public static int checkIfNumber(String value){
          // Check if there even is a string
          if (value.compareTo("") == 0) { restateInput(); }
@@ -76,7 +104,15 @@ public class check {
     }
 
     
-    // This method checks if a string can be converted to a number while also taking a range parameter which checks if the number is inside the range
+    /**
+     * This method checks if a string can be converted to a integer while also taking a range parameter 
+     * which checks if the integer is inside the range
+     * 
+     * @param value The String to be converted to a integer
+     * @param range The range that the integer can be
+     * 
+     * @return The passed parameter or a new input converted to a integer
+     */
     public static int checkIfNumber(String value, int range){
         // Check if there even is a string
         if (value.compareTo("") == 0) { restateInput(); }

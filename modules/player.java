@@ -1,6 +1,7 @@
 // Package : Tells the program that this class is stored inside a folder
 package modules;
 
+// Player class
 public class player {
     // Initialize Variables
     private String name;
@@ -11,15 +12,10 @@ public class player {
     private int sanity;
     private int healthPotions;
 
-    /* Constructor with args passed (Used for loading a save) */ 
-    public player(String _name, int _hp, int _sanity, int _healthPotions){
-        // Set private variables as the params passed
-        name = _name;
-        hp = _hp;
-        sanity = _sanity;
-        healthPotions = _healthPotions;
-    }
-    /* Constructor with no args */
+    /**
+     * Constructor that sets every player value to default values and sets the player name to the passed parameter
+     * @param _name The name of the player that will be used throughout the story
+     */
     public player(String _name){
         // Set the name as the passed param
         name = _name;
