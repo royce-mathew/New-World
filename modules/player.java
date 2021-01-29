@@ -7,7 +7,6 @@ public class player {
     private String name;
 
     // Initialize private vars
-    private int coins;
     private int hp;
     private int sanity;
     private int healthPotions;
@@ -26,19 +25,12 @@ public class player {
     }
 
     /* Getter Methods */ 
-    public int getCoins(){ return coins; }
     public int getHp(){ return hp; }
     public int getSanity(){ return sanity; }
     public int getPotions(){ return healthPotions; }
     public String getName() { return name; }
 
     /* Setter Methodss */ 
-    // Set coins as passed param
-    public void setCoins(int _coins){
-        // Set coins if the value is acceptable
-        coins = check.checkNegative(_coins);
-    }
-
     // Add 1 potion to the potions variable
     public void addPotions(){
         healthPotions++;
@@ -46,12 +38,6 @@ public class player {
     // Subtract 1 potion from the potions variable
     public void subtractPotions(){
         healthPotions--;
-    }
-
-    // Update the coins to the coins passed
-    public void updateCoins(int _coins){
-        // Update coins if the value is acceptable
-        coins += check.checkNegative(_coins);
     }
 
     // Set the plr hp to the passed param

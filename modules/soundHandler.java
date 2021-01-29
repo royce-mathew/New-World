@@ -62,7 +62,7 @@ public class soundHandler {
         // If the program does not find the audio file
         } catch (Exception e){
             // Print in the console what audio errored
-            util.print("Error: Unable to play audio " + _audioFile.getName());
+            util.print("Error: Unable to play audio " + _audioFile.getName()+"\n"+e.getMessage());
         }
     }
 }
